@@ -114,3 +114,8 @@
   .main {
     color: rgba(255,255,255,1)
   }
+
+  .pound {
+    color: #40E0D0;
+    margin-right: 5px;
+  }
