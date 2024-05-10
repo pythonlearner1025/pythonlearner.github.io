@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Work - minjune</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>minjune</h1>
+    <nav>
+      <a href="/">home</a>
+      <a href="work.html">work</a>
+      <a href="https://x.com/song_minjune">x</a>
+    </nav>
+  </header>
+  <main>
+    <div id="projects"></div>
+  </main>
+  <footer></footer>
+
+</footer>
+<script>
+  fetch('/projects/projects.json')
+    .then(response => response.json())
+    .then(projects => {
+      const projectList = document.getElementById('projects');
+      const fetchPromises = projects.map(project => {
+        return fetch(project.file)
+          .then(response => response.text())
+          .then(htmlContent => {
+            return { project, htmlContent };
+          });
+      });
+      Promise.all(fetchPromises)
+        .then(results => {
+          results.forEach(({ project, htmlContent }) => {
+            const listItem = document.createElement('div');
+            listItem.innerHTML = `<div class="project-item">${htmlContent}</div>`;
+            projectList.appendChild(listItem);
+          });
+        })
+        .catch(error => {
+          console.error('Error fetching HTML files:', error);
+        });
+    })
+    .catch(error => {
+      console.error('Error fetching projects:', error);
+    });
+</script>
+</body>
+</html>

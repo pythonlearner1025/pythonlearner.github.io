@@ -1,210 +1,104 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-us">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Windows XP Style Home Screen</title>
-    <style>
-        @font-face {
-            font-family: "Tahoma";
-            src: url("https://fonts.cdnfonts.com/s/24599/Tahoma-Regular.woff") format("woff");
-        }
+	<meta name="generator" content="Hugo 0.124.1">
+  <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="https://minjunes.ai/assets/favicon.jpeg" />
+<title>minjune</title>
+<meta name="title" content="minjune" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
 
-        body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100vh;
-            background-image: url('https://wallpaperaccess.com/full/53864.jpg');
-            background-size: cover;
-            overflow: hidden;
-            position: relative;
-            cursor: none;
-            font-family: "Tahoma", sans-serif;
-        }
+<meta property="og:title" content="" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://minjunes.ai/" />
 
-        /* Exaggerated Windows XP-style cursor */
-        #custom-cursor {
-            position: absolute;
-            width: 48px;
-            height: 48px;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="0.5,0.5 10.5,10.5 8.5,12.5 12.5,14.5 10.5,16.5 14.5,18.5 11.5,20.5 15.5,22.5 8.5,12.5 0.5,0.5" fill="white" /></svg>');
-            pointer-events: none;
-            z-index: 1000;
-            transition: transform 0.05s ease;
-        }
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content=""/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@song_minjune"/>
 
-        .file {
-            position: absolute;
-            width: 100px;
-            height: 120px;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            padding: 10px;
-            cursor: grab;
-            transition: transform 0.2s;
-            z-index: 500;
-            font-family: "Tahoma", sans-serif;
-        }
 
-        .file:active {
-            cursor: grabbing;
-        }
+<meta itemprop="name" content="">
+<meta itemprop="description" content="">
+<meta name="referrer" content="no-referrer-when-downgrade" />
+<link rel="stylesheet" href="style.css">
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+  MathJax = {
+    tex: {
+      displayMath: [['\\[', '\\]'], ['$$', '$$']],  
+      inlineMath: [['\\(', '\\)']]                  
+    }
+  };
+</script>
 
-        .file:hover {
-            transform: scale(1.1);
-        }
-
-        .file img {
-            width: 64px;
-            height: 64px;
-        }
-
-        .file-label {
-            margin-top: 10px;
-            font-weight: bold;
-            color: #333;
-        }
-
-        /* Command bar at the bottom */
-        #command-bar {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 40px;
-            background-color: #3b5998;
-            display: flex;
-            align-items: center;
-            padding: 0 10px;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
-            font-family: "Tahoma", sans-serif;
-        }
-
-        #search-box {
-            flex: 1;
-            height: 24px;
-            margin-left: 10px;
-            padding: 5px;
-            border: none;
-            border-radius: 4px;
-            outline: none;
-            font-size: 14px;
-            font-family: "Tahoma", sans-serif;
-        }
-
-        #search-button {
-            margin-left: 10px;
-            padding: 5px 10px;
-            border: none;
-            border-radius: 4px;
-            background-color: #61dafb;
-            color: #20232a;
-            cursor: pointer;
-            outline: none;
-            font-size: 14px;
-            font-family: "Tahoma", sans-serif;
-        }
-
-        #search-button:hover {
-            background-color: #4ea3db;
-        }
-    </style>
+  
 </head>
+
 <body>
-    <!-- Exaggerated Cursor -->
-    <div id="custom-cursor"></div>
+  <header><h1>minjune</h1>
+<nav><a href="/">home</a>
+<a href="work.html">work</a>
+<a href="https://x.com/song_minjune">x</a>
+</nav>
+</header>
+    <img src="assets/profile.jpeg" alt="nebula" width="256" height="256">
+  <main><p class="main">creators create</p>
+<hr />
+<!-- TODO: Make this interactive, i.e. the user can actually type in cd latest & ls in an interactive terminal emulator -->
+<b class="code">$ date</b>
+<br>
+<b class="terminal" id="date-output"></b>
+<br>
+<b class="code">$ cd latest</b>
+<br>
+<b class="code">$ ls</b>
+<div id="project-list" style="white-space: pre-wrap;"></div>
 
-    <!-- Example project files -->
-    <a href="project1.html" class="file" data-project="Project 1">
-        <img src="https://via.placeholder.com/64" alt="Project 1">
-        <div class="file-label">Project 1</div>
-    </a>
-
-    <a href="project2.html" class="file" data-project="Project 2">
-        <img src="https://via.placeholder.com/64" alt="Project 2">
-        <div class="file-label">Project 2</div>
-    </a>
-
-    <!-- Command Bar -->
-    <div id="command-bar">
-        <input type="text" id="search-box" placeholder="Type project name and press Enter...">
-        <button id="search-button">Search</button>
-    </div>
-
-    <script>
-        // Custom Cursor
-        const cursor = document.getElementById("custom-cursor");
-
-        document.addEventListener("mousemove", (e) => {
-            cursor.style.top = `${e.pageY - 24}px`;
-            cursor.style.left = `${e.pageX - 24}px`;
-        });
-
-        document.addEventListener("mousedown", () => {
-            cursor.style.transform = "scale(0.8)";
-        });
-
-        document.addEventListener("mouseup", () => {
-            cursor.style.transform = "scale(1)";
-        });
-
-        // Draggable Projects
-        const files = document.querySelectorAll('.file');
-
-        files.forEach(file => {
-            file.style.top = `${Math.random() * (window.innerHeight - 120)}px`;
-            file.style.left = `${Math.random() * (window.innerWidth - 100)}px`;
-
-            let offsetX, offsetY;
-
-            file.addEventListener('mousedown', (event) => {
-                offsetX = event.clientX - file.getBoundingClientRect().left;
-                offsetY = event.clientY - file.getBoundingClientRect().top;
-
-                const onMouseMove = (e) => {
-                    file.style.left = `${e.clientX - offsetX}px`;
-                    file.style.top = `${e.clientY - offsetY}px`;
-                };
-
-                document.addEventListener('mousemove', onMouseMove);
-
-                document.addEventListener('mouseup', () => {
-                    document.removeEventListener('mousemove', onMouseMove);
-                }, { once: true });
-            });
-        });
-
-        // Command Bar Search
-        const searchBox = document.getElementById('search-box');
-        const searchButton = document.getElementById('search-button');
-
-        const projectPages = {
-            'project 1': 'project1.html',
-            'project 2': 'project2.html'
-        };
-
-        const searchProject = () => {
-            const query = searchBox.value.trim().toLowerCase();
-
-            if (query in projectPages) {
-                window.location.href = projectPages[query];
-            } else {
-                alert('Project not found. Please try again.');
-            }
-        };
-
-        // Search button click
-        searchButton.addEventListener('click', searchProject);
-
-        // Enter key in search box
-        searchBox.addEventListener('keydown', (event) => {
-            if (event.key === 'Enter') {
-                searchProject();
-            }
-        });
-    </script>
+</main>
+<footer>
+</footer>
+<script>
+ fetch('/projects/projects.json')
+  .then(response => response.json())
+  .then(projects => {
+    const projectList = document.getElementById('project-list');
+    let output = '';
+    projects.forEach(project => {
+      output += `<a href="${project.file}" class="terminal">${project.title}</a>  `;
+    });
+    projectList.innerHTML = output;
+  })
+  .catch(error => {
+    console.error('Error fetching projects:', error);
+  }); 
+</script>
+<script>
+function updateDate() {
+    const dateOutput = document.getElementById('date-output');
+    const now = new Date();
+    const options = {
+    weekday: 'short',
+    month: 'short',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+    timeZoneName: 'short',
+    year: 'numeric'
+    };
+    const formattedDate = now.toLocaleString('en-US', options);
+    dateOutput.textContent = formattedDate;
+}
+// Update the date initially
+updateDate();
+// Update the date every second
+setInterval(updateDate, 1000);
+</script>
 </body>
 </html>

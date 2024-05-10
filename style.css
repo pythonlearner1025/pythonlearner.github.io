@@ -1,0 +1,130 @@
+  @font-face {
+    font-family: "Noto Sans";
+    src: url("assets/Noto_Sans/NotoSans-Italic-VariableFont_wdth,wght.tff") format("woff2-variations");
+    font-weight: 100 900;
+    font-style: italic;
+  }
+  
+  @font-face {
+    font-family: "Noto Sans";
+    src: url("assets/Noto_Sans/NotoSans-VariableFont_wdth,wght.ttf") format("woff2-variations");
+    font-weight: 100 900;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Martian Mono";
+    src: url("assets/Martian_Mono/MartianMono-VariableFont_wdth,wght.ttf") format("woff2-variations");
+    font-weight: 100 800;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Martian Mono Code";
+    src: url("assets/Martian_Mono/MartianMono-VariableFont_wdth,wght.ttf") format("woff2-variations");
+    font-weight: 100 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Berkley Mono";
+    src: url("assets/berkeley-mono-typeface/berkeley-mono-variable/TTF/BerkeleyMonoVariable-Regular.ttf") format("woff2-variations");
+    font-weight: 100 1000;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Berkley Mono Code";
+    src: url("assets/berkeley-mono-typeface/berkeley-mono-variable/TTF/BerkeleyMonoVariable-Regular.ttf") format("woff2-variations");
+    font-weight: 100 300;
+    font-style: normal;
+  }
+  
+  body {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    margin: auto;
+    text-align: justify;
+    text-justify: inter-word;
+    background-color: rgb(0, 0, 0);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.85);
+    color-scheme: dark;
+    min-width: 320px;
+    max-width: 700px;
+  }
+  p, li {
+    font-family: "Noto Sans", monospace;
+  } 
+  h1 {
+    font-family: "Berkley Mono", monospace;
+    font-size: x-large;
+    color: rgba(255, 255, 255, 0.99);
+  }
+  h2, h3, h4, h5, h6 {
+    font-family: "Berkley Mono", monospace;
+    font-size: inherit;
+    color: rgba(255, 255, 255, 0.99);
+  }
+  
+  header {
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+  }
+  
+  header h3 {
+    margin: 0;
+  }
+  
+  a {
+    color: #9370DB;
+    text-decoration: none;
+  }
+  
+  :not(nav) > a:hover {
+    color: #9370DB;
+  }
+  
+  nav a {
+    margin-right: 10px;
+    color: #9370DB;
+    text-decoration: none;
+  }
+  
+  main {
+    padding: 0 1rem;
+    margin-top: 1rem;
+  }
+  
+  hr {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-width: 0px;
+    height: 1px;
+  }
+  
+  footer {
+    padding: 0 1rem;
+  }
+
+  .project-item {
+    margin-bottom: 40px; /* Adjust the value as needed */
+  }
+
+  .code {
+    font-family: "Berkley Mono Code", monospace;
+    font-size:small;
+    color: rgba(255, 255, 255, 0.85); 
+  }
+
+  .terminal {
+    font-family: "Berkley Mono Code", monospace;
+    font-size:small;
+    color: #9370DB;
+    text-decoration: none;
+  }
+
+  .main {
+    color: rgba(255,255,255,1)
+  }
