@@ -25,7 +25,14 @@
     font-weight: 100 300;
     font-style: normal;
   }
-  
+
+  @font-face {
+    font-family: "Berkley Mono Light";
+    src: url("assets/berkeley-mono-typeface/berkeley-mono-variable/TTF/BerkeleyMonoVariable-Regular.ttf") format("woff2-variations");
+    font-weight: 100 100;
+    font-style: normal;
+  }
+
   body {
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     margin: auto;
@@ -41,7 +48,7 @@
     max-width: 700px;
   }
   p, li {
-    font-family: "Noto Sans", monospace;
+    font-family: "Berkley Mono Light", monospace;
   } 
   h1 {
     font-family: "Berkley Mono", monospace;
@@ -65,8 +72,13 @@
   }
   
   a {
+    font-family: "Berkley Mono", monospace;
     color: #8e5ac9;
     text-decoration: none;
+  }
+
+  table {
+    font-family: "Berkley Mono Light", monospace;
   }
   
   :not(nav) > a:hover {
