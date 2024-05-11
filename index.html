@@ -80,15 +80,15 @@ function updateDate() {
     const dateOutput = document.getElementById('date-output');
     const now = new Date();
     const options = {
-    weekday: 'short',
-    month: 'short',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-    second: 'numeric',
-    timeZoneName: 'short',
-    year: 'numeric'
-    };
+      weekday: 'short',
+      month: 'short',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+      timeZoneName: 'short',
+      year: 'numeric'
+      };
     const formattedDate = now.toLocaleString('en-US', options);
     dateOutput.textContent = formattedDate;
 }

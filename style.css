@@ -22,7 +22,7 @@
   @font-face {
     font-family: "Berkley Mono Code";
     src: url("assets/berkeley-mono-typeface/berkeley-mono-variable/TTF/BerkeleyMonoVariable-Regular.ttf") format("woff2-variations");
-    font-weight: 100 300;
+    font-weight: 100 150;
     font-style: normal;
   }
 
@@ -116,12 +116,13 @@
     color: rgba(255, 255, 255, 0.85); 
   }
 
-  .terminal {
-    font-family: "Berkley Mono Code", monospace;
-    font-size:small;
-    color: #8e5ac9;
-    text-decoration: none;
-  }
+  .terminal,
+  a.terminal {
+    font-family: "Berkley Mono Code", monospace !important;
+    font-size: 13px !important;
+    color: #8e5ac9 !important;
+    text-decoration: none !important;
+  } 
 
   .main {
     color: rgba(255,255,255,1)
