@@ -10,3 +10,10 @@ fetch('/navbar.html')
     link.href = '/assets/profile.jpeg';
     document.head.appendChild(link);
   });
+
+MathJax = {
+  tex: {
+    displayMath: [['\\[', '\\]'], ['$$', '$$']],  
+    inlineMath: [['\\(', '\\)']]                  
+  }
+};

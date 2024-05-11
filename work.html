@@ -7,8 +7,10 @@
   <link rel="shortcut icon" href="/assets/profile.jpeg" />
   <link rel="stylesheet" href="style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
+  <script src="/index.js"></script>
   <header>
     <h1>Minjune Song</h1>
     <div id="navbar"></div>
@@ -38,6 +40,8 @@
             listItem.innerHTML = `<div class="project-item">${htmlContent}</div>`;
             projectList.appendChild(listItem);
           });
+          // Typeset MathJax after content is inserted
+          MathJax.typesetPromise();
         })
         .catch(error => {
           console.error('Error fetching HTML files:', error);
@@ -47,6 +51,5 @@
       console.error('Error fetching projects:', error);
     });
 </script>
-<script src="index.js"></script>
 </body>
 </html>
