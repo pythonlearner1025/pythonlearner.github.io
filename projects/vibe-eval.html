@@ -22,16 +22,16 @@
 
     <p>In all environments, the AI should predict our intentions from observing our actions. The more information, the better, and generally images are more information dense than language. Currently, our most capable AI systems have advanced understanding of language, but poor understanding of images. Advancing visual capabilities is straightforward step towards building maximally helpful agents that understand human goals and help achieve them.</p>
 
-    <p>vision-language models (VLMs) TODO list:</p>
+    <p>Vision-Language Models (VLMs) TODO list:</p>
     <ul>
         <li>Longer video understanding. current systems can handle around 127 imgs / 100,000 tokens or 1270/1mil tokens (gpt-4-turbo). at 0.1 fps (every 10 frames) around 3.52 hours of footage. This number should go up an order of magnitude more, around 24hrs/1mil tokens to start having agent that can help with longer term goals. We need to either 10x the compression, or 10x the context length.</li>
-        <li>Smaller, VLMs running on-devise. Are you comfortable streaming your life, virtual and IRL, over https to some company?</li>
+        <li>Smaller, VLMs running on-device. Are you comfortable streaming your life, virtual and IRL, over https to some company?</li>
         <li>Faster VLMs, current SOTA (gpt-4-vision, claude-3-opus, reka-core) models take well over 30 seconds to begin streaming their first token. This is about 200x off from 150ms delay in in-person conversations.</li>
     </ul>
 
-    <p>Smaller VLMs will be great. They will always fall behind server-side VLMs in context-length and capability, but are a more viable path to private, real-time assistants that can run locally.</p>
+    <p>Smaller VLMs will be great. They will always be behind server-side VLMs in terms of capability, but are a more viable path to private, real-time assistants that can run locally.</p>
 
-    <p>Advancement requires measurements of progress. The Reka AI team published a fantastic evaluation set of 269 high-quality visual question-answer pairs hand crafted and thoroughly vetted by their team. To judge the current state of small scale VLMs, I evaluated 8 small VLMs in 1.8-8B parameters range on reka-vibe-eval, and share my results.</p>
+    <p>Advancement requires measurements of progress. The Reka AI team published a fantastic evaluation set of 269 high-quality visual question-answer pairs hand crafted and thoroughly vetted by their team. To judge the current state of small scale VLMs, I evaluated eight small VLMs in the 1.86-8B parameters range on reka-vibe-eval. I share my results below.</p>
 
     <p>Unfortunately, the eval does not test video understanding. In any case, all tested models with the exception of LLama3-VILA lack multi-image support. Something worth working on would be small, high-quality evals for video understanding, and small VLMs with multi-image support.</p>
 
