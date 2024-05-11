@@ -65,17 +65,17 @@
   }
   
   a {
-    color: #7c4cdc;
+    color: #8e5ac9;
     text-decoration: none;
   }
   
   :not(nav) > a:hover {
-    color: #7c4cdc;
+    color: #8e5ac9;
   }
   
   nav a {
     margin-right: 10px;
-    color: #7c4cdc;
+    color: #8e5ac9;
     text-decoration: none;
   }
   
@@ -107,7 +107,7 @@
   .terminal {
     font-family: "Berkley Mono Code", monospace;
     font-size:small;
-    color: #7c4cdc;
+    color: #8e5ac9;
     text-decoration: none;
   }
 
