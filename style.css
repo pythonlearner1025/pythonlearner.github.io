@@ -65,17 +65,17 @@
   }
   
   a {
-    color: #9370DB;
+    color: #7c4cdc;
     text-decoration: none;
   }
   
   :not(nav) > a:hover {
-    color: #9370DB;
+    color: #7c4cdc;
   }
   
   nav a {
     margin-right: 10px;
-    color: #9370DB;
+    color: #7c4cdc;
     text-decoration: none;
   }
   
@@ -107,7 +107,7 @@
   .terminal {
     font-family: "Berkley Mono Code", monospace;
     font-size:small;
-    color: #9370DB;
+    color: #7c4cdc;
     text-decoration: none;
   }
 
@@ -116,6 +116,11 @@
   }
 
   .pound {
-    color: #40E0D0;
+    color: #009ddc;
     margin-right: 5px;
+  }
+
+  .date {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6)
   }
