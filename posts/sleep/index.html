@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <script src="sleep-calculator.js"></script>
+   <script src="link.js"></script>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Engineering Sleep</title>
+   <link rel="stylesheet" type="text/css" href="style.css"></link>
+</head>
+<body>
+   <h1>Engineering Sleep</h1>
+
+   <h2>Background</h2>
+   <p>Sleep claims a third of human life. Like water, it's not a desire but a necessity. Sleep rules virtually every important system: brain, heart, mood, and immunity. Nature's terms are harsh. Sleep eight hours or face mental and physical decay. But what if sleep is negotiable? Can we control sleep?</p>
+
+   <div class="calculator">
+    <h3>Sleep Time Calculator</h3>
+    <p class="calculator-intro">See how much time you could gain by sleeping more efficiently. Try adjusting the values!</p>
+    <div class="input-group">
+        <label for="age">Your age:</label>
+        <input type="number" id="age" min="0" max="120" value="30" placeholder="Enter your age">
+    </div>
+    <div class="input-group">
+        <label for="expected-lifespan">Expected lifespan:</label>
+        <input type="number" id="expected-lifespan" min="1" max="150" value="100" placeholder="Expected years of life">
+    </div>
+    <div class="input-group">
+        <label for="sleep-time">Average hours of sleep per night:</label>
+        <input type="number" id="sleep-time" min="0" max="24" step="0.5" value="8" placeholder="How many hours do you sleep?">
+    </div>
+    <div id="slider-container">
+        <label for="desired-sleep">Desired hours of sleep:</label>
+        <input type="range" id="desired-sleep" step="0.5">
+        <div class="slider-values">
+            <span id="slider-value">8</span> hours
+        </div>
+    </div>
+    <div id="result">
+        <h4>You gain: <span id="years-gained">0</span> years</h4>
+    </div>
+    </div>
+
+   <p>Rare mutations suggest a good night's sleep is not so fixed. It's estimated that less than one percent of the population have Familial Natural Short Sleep (FNSS), a benign mutation that allows them to sleep 1-2 hours less than the recommended 7-9 hours, without experiencing the negative effects of sleep deprivation <a>[1]</a>.</p>
+
+   <p>Contrary to symptoms of chronic sleep deprivation, FNSS carriers are happier, thinner, and live longer lives <a>[2]</a>. Better health despite shorter sleep goes against everything we know about sleep. One explanation for this paradox is that FNSS carriers are sleeping more efficiently. They sleep less because their sleep quality is higher.</p>
+
+   <h2>A Benevolent Trait</h2>
+   <p>How does FNSS work? Five genes have been identified with the FNSS phenotype, but DEC2 is the most studied. In 2009, professor Ying-Hui Fu at UCSF discovered a DEC2 point mutation in two individuals from a family who slept 6.25 hours on average <a>[3]</a>. Normally, the DEC2 protein acts as an inhibitor to a transcription factor complex that increases levels of the neurotransmitter orexin. The mutation is a missense mutation where proline is replaced by arginine at position 384 in exon 5 (DEC2P384R), disrupting DEC2's ability to bind to the transcription factor. Left uninhibited, the transcription factor is able to express orexin more. This abnormally increased level of orexin expression partially explains reduced sleep, though it's far from the whole picture.</p>
+
+   <div class="figure">
+       <img src="assets/FNSS_mech.jpeg" alt="DEC2 Mechanism Diagram">
+       <p class="figure-caption">Fig 1. In normal humans, Dec2 weakens E12/Myod1's binding affinity to the Ebox1 promoter site of prepro-orexin, which is responsible for endogenous orexin synthesis. In FNSS mutants, the De2p384r's interaction with the E12/Myod1 complex is weaker, and there is greater orexin</p>
+   </div>
+
+   <p>Two decades of sleep research supports the link between orexin and sleep <a>[4]</a>. Studies of narcolepsy and insomnia have identified orexin as a key neurotransmitter that modulates awakeness. A deficit of orexin producing neurons is responsible for excessive sleepiness in narcolepsy <a>[5]</a>. An overexpression of orexin is responsible for hypervigilance in insomnia <a>[6]</a>. Throughout the day and night, we move between the wake-sleep axis defined by orexin levels, which are lowest in the middle of the day and highest during the transition from NREM to REM sleep <a>[7]</a>.</p>
+
+   <div class="figure">
+       <img src="assets/orexin_level.jpg" alt="Orexin Levels Graph">
+       <p class="figure-caption">Fig 2. CSF orexin levels throughout the day. Levels are relative (TODO remove y-axis marker)</p>
+   </div>
+
+   <h2>Path I: Synthetic Orexin Agonists</h2>
+   <h3>Approach</h3>
+   <p>Orally dose orexin receptor agonists. The mechanism leverages direct receptor activation, similar to drugs currently in clinical trials for treating narcolepsy. These small molecules are designed for optimal blood-brain barrier penetration and selective binding to orexin receptors.</p>
+
+    <img src="assets/pathway1.jpg" alt="Path I: Orexin Agonists">
+
+   <h3>Unknowns</h3>
+   <p>Primarily, we don't know the effects of chronic orexin receptor activation on sleep architecture and cognition. The companies developing orexin agonists are most likely to have data on sleep and cognition, but they haven't published data on long term effects (cite). The possibility of tolerance development over long periods is unknown: like other chronic neurotransmitter receptor agonists (think nicotine), we may see diminishing effects over time. Also, withdrawal effects which could alter baseline sleep patterns upon discontinuation are not known. Finally, individual response variation needs investigation.</p>
+
+   <h2>Path II: Gene Therapy: Mutation Knock-In</h2>
+   <h3>Approach</h3>
+   <p>Replicate the natural FNSS mutation through targeted genetic modification using episomal expression. Episomal expression is when a gene is expressed from pieces of DNA that are separate from the chromosomal DNA. Importantly, the cell's chromosomal DNA is left alone, so there is zero risk of passing down the mutation to offspring. For this approach, we use AAV9 vectors to deliver the DEC2P384R gene to orexin-expressing neurons in adult mice. The vectors remain as extra-chromosomal DNA in the nucleus, producing the mutant DEC2 protein which competes with native DEC2. This aims to partially mirror the mechanism seen in FNSS.</p>
+
+    <img src="assets/pathway2.jpg" alt="Path II: Gene Therapy">
+
+   <h3>Unknowns</h3>
+   <p>The therapeutic window and longevity of episomal expression remain key uncertainties. Typical AAV9 expression peaks at 4-8 weeks before declining, necessitating a redosing strategy that introduces its own complications. The competition dynamics between episomal and native DEC2 are not known, particularly regarding minimum effective mutant protein levels needed to influence sleep. Expression variability between individuals could lead to unpredictable responses, while repeated dosing may trigger immune responses that reduce efficacy over time.</p>
+
+   <p>The difference between developmental versus adult introduction of mutant DEC2 adds another layer of complexity, as do potential off-target effects on DEC2-regulated pathways beyond sleep.</p>
+
+   <h2>Overview of Pathways</h2>
+   <table>
+       <tr>
+           <th>Aspect</th>
+           <th>Path I: Orexin Agonists</th>
+           <th>Path II: Gene Therapy</th>
+       </tr>
+       <tr>
+           <td>Pros</td>
+           <td>
+               <ul>
+                   <li>Precise dose control</li>
+                   <li>Easy systematic testing</li>
+                   <li>Simple oral delivery</li>
+                   <li>Quick reversibility</li>
+                   <li>Low cost at scale</li>
+               </ul>
+           </td>
+           <td>
+               <ul>
+                   <li>Targeted neuronal delivery</li>
+                   <li>Partially mirrors FNSS mechanism</li>
+                   <li>Reversible if discontinued</li>
+                   <li>Established AAV9 safety profile</li>
+               </ul>
+           </td>
+       </tr>
+       <tr>
+           <td>Cons</td>
+           <td>
+               <ul>
+                   <li>Whole body exposure</li>
+                   <li>Daily dosing needed</li>
+                   <li>Compliance requirements</li>
+               </ul>
+           </td>
+           <td>
+               <ul>
+                   <li>Complex delivery</li>
+                   <li>Requires periodic redosing</li>
+                   <li>Expression level variability</li>
+                   <li>Immune response with redosing</li>
+                   <li>High cost per dose</li>
+               </ul>
+           </td>
+       </tr>
+       <tr>
+           <td>Unknowns</td>
+           <td>
+               <ul>
+                   <li>Optimal dosing frequency</li>
+                   <li>Long term effects on sleep/cognition</li>
+                   <li>Tolerance development</li>
+                   <li>Withdrawal effects</li>
+               </ul>
+           </td>
+           <td>
+               <ul>
+                   <li>Optimal dosing frequency</li>
+                   <li>Long-term effects on sleep/cognition</li>
+                   <li>Long-term redosing effects</li>
+                   <li>Expression stability</li>
+                   <li>Immune tolerance</li>
+               </ul>
+           </td>
+       </tr>
+   </table>
+
+   <h2>Too good to be true?</h2>
+   <p>90+ families with FNSS have been identified to date <a>[cite]</a>. If FNSS is truly benign, why is it so rare? It could be that the mutation really is benign, but does not help reproductive success. But, the mutation could also have negative fitness effects that are currently unobserved.</p>
+
+   <div class="figure">
+       <img src="assets/sim.jpg" alt="Fisher-Wright Simulation Graph">
+       <p class="figure-caption">Fisher-Wright simulation showing allele frequency dynamics with 10% fitness penalty across population sizes (N=100, 1,000, 10,000). Initial carrier frequency 1%, tracked for 20 generations over 100 simulations. Solid lines show means; shaded regions show standard deviations.</p>
+   </div>
+
+   <p>Under the Fisher-Wright model, even substantially harmful mutations can appear neutral when tracking small populations across just a few generations. If the mutation has a tiny effective population size, limited generational depth, and extremely low carrier frequency, it would be impossible to distinguish between neutral drift and negative selection.</p>
+
+   <p>Fortunately, there is no risk of the mutation being passed down to offsprings in either the orexin agonist pathway or the gene therapy pathway. Instead, the risk of artificially inducing FNSS is concentrated in medium to long term impacts to complex biological systems: metabolism, circadian rhythm, hormone regulation, and cognition. As of now, we simply don't have enough data to profile any of these risks. More experiments are needed to know if "FNSS for all" is too good to be true.</p>
+
+   <h2>Call for Experiments</h2>
+   <p>People with FNSS are living proof that sleep needs aren't immutable. Engineering sleep to be more efficient is a real possibility. Efforts to reproduce FNSS phenotype in animals have been few, but those that did found improved memory and longevity <a>[cite]</a>, <a>[cite]</a>. We already struggle to get enough sleep: 34% of Americans are chronically sleep deprived <a>[cite]</a>. What if everyone could sleep less, but think better and live longer? Considering the civilizational upside of controlling sleep, the number of experiments studying FNSS have been unreasonably low.</p>
+
+   <p>15 years after its pioneering work that identified DEC2P384R, Ying-Hui Fu's lab remains the only group that came close to studying lifetime effects of inducing FNSS. Perhaps this represents what J Storss Halls called a "civilizational failure of nerve" - where institutions become pathologically risk-averse, more focusing on preventing downside risks than enabling upside potential <a>[8]</a>. Yet scientific and technological progress rests on our willingness to experiment and iterate, and we can't let old structures deny us humanity's greatest deal: choosing how to reallocate up to one-third of our time.</p>
+
+   <div class="references">
+       <h2>References</h2>
+       <ol>
+           <li>
+            <a href="https://my.clevelandclinic.org/health/diseases/short-sleeper-syndrome-sss">https://my.clevelandclinic.org/health/diseases/short-sleeper-syndrome-sss</a>
+            </li>
+           <li><a href="https://www.ucsf.edu/news/2019/08/415261/after-10-year-search-scientists-find-second-short-sleep-gene">https://www.ucsf.edu/news/2019/08/415261/after-10-year-search-scientists-find-second-short-sleep-gene</a></li>
+           <li>
+            <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2884988/#:~:text=Our%20results%20demonstrate%20that%20DEC2,back%20in%20evolution%20as%20invertebrates.">
+                He Y, Jones CR, Fujiki N, Xu Y, Guo B, Holder JL Jr, Rossner MJ, Nishino S, Fu YH. The transcriptional repressor DEC2 regulates sleep length in mammals. Science. 2009 Aug 14;325(5942):866-70. doi: 10.1126/science.1174443. PMID: 19679812; PMCID: PMC2884988.
+            </a>
+            </li>
+            <li>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/35851580/">
+                    De Luca R, Nardone S, Grace KP, Venner A, Cristofolini M, Bandaru SS, Sohn LT, Kong D, Mochizuki T, Viberti B, Zhu L, Zito A, Scammell TE, Saper CB, Lowell BB, Fuller PM, Arrigoni E. Orexin neurons inhibit sleep to promote arousal. Nat Commun. 2022 Jul 18;13(1):4163. doi: 10.1038/s41467-022-31591-y. PMID: 35851580; PMCID: PMC9293990.
+                </a>
+            </li>
+            <li>
+                <a href="https://sleep.hms.harvard.edu/education-training/public-education/sleep-and-health-education-program/sleep-health-education-4#:~:text=Research%20has%20revealed%20that%20narcolepsy,in%20the%20development%20of%20narcolepsy">
+                   The Science of Narcolepsy 
+                </a>
+            </li>
+            <li>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/37086045/">
+                    Muehlan C, Roch C, Vaillant C, Dingemanse J. The orexin story and orexin receptor antagonists for the treatment of insomnia. J Sleep Res. 2023 Dec;32(6):e13902. doi: 10.1111/jsr.13902. Epub 2023 Apr 22. PMID: 37086045.
+                </a>
+            </li>
+            <li>
+                <a href="https://doi.org/10.3390/nu15173679">
+                    Mogavero, M. P., Godos, J., Grosso, G., Caraci, F., & Ferri, R. (2023). Rethinking the Role of Orexin in the Regulation of REM Sleep and Appetite. Nutrients, 15(17), 3679.
+                </a>
+            </li>
+           <li>
+            <a href="https://press.stripe.com/where-is-my-flying-car#:~:text=In%20Where%20Is%20My%20Flying,that%20started%20in%20the%201970s.">
+            Hall, J. S. (2021). Where is my flying car? Stripe Press.
+            </a>
+            </li>
+       </ol>
+   </div>
+</body>
+</html>

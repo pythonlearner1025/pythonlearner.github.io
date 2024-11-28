@@ -1,0 +1,104 @@
+ body {
+    font-family: "Times New Roman";
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.figure {
+    margin: 20px 0;
+    text-align: center;
+}
+.figure img {
+    max-width: 100%;
+    height: auto;
+}
+.figure-caption {
+    font-style: italic;
+    margin-top: 10px;
+}
+.pathway-diagram {
+    margin: 30px 0;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 5px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background-color: #f5f5f5;
+}
+.graph {
+    margin: 20px 0;
+}
+.references {
+    margin-top: 40px;
+}
+.references ol {
+    padding-left: 20px;
+}
+.calculator {
+    background: #f5f5f5;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+.input-group {
+    margin: 15px 0;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 200px;
+}
+.calculator-intro {
+    color: #666;
+    margin-bottom: 20px;
+}
+#slider-container {
+    margin: 30px 0;
+}
+
+#desired-sleep {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.slider-values {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #2c5282;
+}
+
+#result {
+    text-align: center;
+    margin: 20px 0;
+}
+#result h4 {
+    font-size: 1.4em;
+    color: #2c5282;
+}
+
+#years-gained {
+    font-weight: bold;
+}
+img {
+    height: 500px;
+    width: auto;
+    max-width: 100%; /* This ensures the image won't overflow its container */
+}

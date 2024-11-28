@@ -27,75 +27,34 @@
 <meta itemprop="description" content="">
 <meta name="referrer" content="no-referrer-when-downgrade" />
 <link rel="stylesheet" href="style.css">
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
-<script>
-  MathJax = {
-    tex: {
-      displayMath: [['\\[', '\\]'], ['$$', '$$']],  
-      inlineMath: [['\\(', '\\)']]                  
-    }
-  };
-</script>
-  
 </head>
 
 <body>
-  <header><h1>Minjune Song</h1>
-  <div id="navbar"></div>
+  <header><h2>Minjune Song</h2>
+  <p>I'm engineering sleep to free up to a third of human consciousness. </p>
+  <p>Why go gently into that good night, every night, without understanding why, and without making our best attempt to control sleep?</p>
+  <p>Previously:</p>
+  <ul>
+    <li>Neurosci x AI @ CMU</li>
+    <li>Deep-CFR net <a href="https://github.com/pythonlearner1025/hete">trainer</a> in mlx/c++</li>
+    <li>LLM lie detector @ runpod.io hackathon (<a href="https://x.com/alexxshev/status/1792348737987387710">1st place</a>)</li>
+    <li>Jailbroke llama3 @ Meta hackathon (<a href="https://x.com/minjunesh/status/1789899150848397451">3rd place</a>)</li>
+    <li>BCI research @ Upitt</li>
+    <li>HCI research @ CMU</li>
+  </ul>
+  
+  <h2>Links</h2>
+  <ul>
+    <li><a href="https://github.com/pythonlearner1025">github</a></li>
+    <li>minjunes at gmail dot com</li>
+    <li><a href="https://x.com/minjunesh">X</a></li>
+  </ul>
 </header>
-    <img src="assets/profile.jpeg" alt="nebula" width="256" height="256">
-  <main><p class="main">creators create</p>
-<hr />
-<!-- TODO: Make this interactive, i.e. the user can actually type in cd latest & ls in an interactive terminal emulator -->
-<b class="code">$ date</b>
-<br>
-<b class="terminal" id="date-output"></b>
-<br>
-<b class="code">$ cd latest</b>
-<br>
-<b class="code">$ ls</b>
-<div id="project-list" style="white-space: pre-wrap;"></div>
+  <main><p class="main"></p>
 
 </main>
 <footer>
 </footer>
-<script>
- fetch('/projects/projects.json')
-  .then(response => response.json())
-  .then(projects => {
-    const projectList = document.getElementById('project-list');
-    let output = '';
-    projects.forEach(project => {
-      output += `<a href="${project.file}" class="terminal">${project.title}</a>  `;
-    });
-    projectList.innerHTML = output;
-  })
-  .catch(error => {
-    console.error('Error fetching projects:', error);
-  }); 
-</script>
-<script>
-function updateDate() {
-    const dateOutput = document.getElementById('date-output');
-    const now = new Date();
-    const options = {
-      weekday: 'short',
-      month: 'short',
-      day: 'numeric',
-      hour: 'numeric',
-      minute: 'numeric',
-      second: 'numeric',
-      timeZoneName: 'short',
-      year: 'numeric'
-      };
-    const formattedDate = now.toLocaleString('en-US', options);
-    dateOutput.textContent = formattedDate;
-}
-// Update the date initially
-updateDate();
-// Update the date every second
-setInterval(updateDate, 1000);
-</script>
 <script src="index.js"></script>
 </body>
 </html>
