@@ -30,25 +30,28 @@ div {
     box-sizing: border-box !important;
     overflow-x: hidden !important;
     word-wrap: break-word !important;
-
 }
 /* Updated image and container styles */
 [style*="display: inline-block"] {
-    width: 100% !important;
-    height: auto !important; /* changed from fixed height */
-    max-width: 100% !important;
+    width: 100vw !important; /* use viewport width */
+    margin-left: -2rem !important; /* counteract div padding */
+    margin-right: -2rem !important;
+    height: auto !important;
+    max-width: none !important; /* remove max-width constraint */
     display: block !important;
-    margin: 0 !important;
-    overflow: visible !important; /* ensure no cropping */
+    overflow: visible !important;
+    padding: 0 !important;
 }
-
 img {
     width: 100% !important;
     height: auto !important;
-    max-width: 100% !important;
+    max-width: none !important;
     margin: 0 !important;
     display: block !important;
     object-fit: contain !important; /* ensure image maintains aspect ratio */
+}
+.c14 {
+    padding: 0 2rem !important;
 }
 
 /* Rest of the styles remain the same */
