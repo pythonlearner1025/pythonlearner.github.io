@@ -1,7 +1,9 @@
 <html><head><meta name="viewport" content="width=device-width, initial-scale=1.0"; charset=UTF-8" http-equiv="content-type"><style type="text/css">
     img {
-        max-width: 100%;
-        height: auto;
+        max-width: 100% !important; /* override any inline styles */
+        height: auto !important;
+        width: 100% !important; /* forces image to fill container width */
+        margin: 0 !important; /* removes any margins that might cause overflow */
     }
     table {
         width: 100%;
@@ -10,7 +12,7 @@
     }
     div {
         max-width: 100%;
-        padding: 0 15px;
+        padding: 0 5px;
     }
     body {
         font-size: 16px;
