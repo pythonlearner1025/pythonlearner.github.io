@@ -82,21 +82,17 @@ The project was motivated by recent results that <a href="https://pubmed.ncbi.nl
 </p>
 
 <p>
-The goal was to self-experiment using a DIY focused ultrasound transducer to answer whether ultrasound stimulation can also reduce sleep onset latency. Although I did not end up self-experimenting, I'm hoping this document helps people who want to do ultrasound neurostimulation.
+The goal was to self-experiment using a focused ultrasound transducer to answer whether ultrasound stimulation can also reduce sleep onset latency. Although I did not end up self-experimenting, I'm hoping this document helps people who want to do ultrasound neurostimulation.
 </p>
 
 <p>
-This was my first jab at electrical & mechanical engineering, pls forgive the jank. 
-</p>
-
-<p>
-Western manufacturers sell prefabricated transducers that meet the requirements below, but they are produced in very low volume and are thus priced at $15K and above. So naturally, I set out to make my own.
+Western manufacturers sell prefabricated transducers that meet the requirements below, but they are produced in very low volume and are thus priced at $15K and above. So naturally I set out to make my own.
 </p>
 
 <h2>Requirements</h2>
 <ul>
 <li>500 kHz fundamental frequency</li>
-<li>30 mm focal length (to reach mPFC through temple bone)</li>
+<li>30 mm focal length (to reach mPFC through forehead)</li>
 <li>36% duty cycle</li>
 <li>Mechanical Index = 0.95</li>
 <li>Peak negative pressure (PNP) = 0.67 MPa</li>
@@ -106,7 +102,7 @@ Western manufacturers sell prefabricated transducers that meet the requirements 
 
 <h2>Overview</h2>
 
-<p>The four key components of a transducer are:</p>
+<p>Four key components of a transducer:</p>
 <ul>
 <li>Piezoelectric element</li>
 <li>Amplifier</li>
@@ -114,7 +110,7 @@ Western manufacturers sell prefabricated transducers that meet the requirements 
 <li>Transducer case</li>
 </ul>
 
-<p>The involved peripheral equipment are:</p>
+<p>Peripheral equipment:</p>
 <ul>
 <li>Function generator (signal source)</li>
 <li>Hydrophone (a piezoelectric sensor to convert Pa to V)</li>
@@ -122,7 +118,7 @@ Western manufacturers sell prefabricated transducers that meet the requirements 
 </ul>
 
 <p>
-Below is an overview of sourcing the piezo element &amp; amplifier, and making the transducer case and the impedance matching network. Finally but importantly, I detailed the process of characterizing the generated pressure field of the transducer to tune the amplifier gain to attain the required pressure.
+Below is an overview of sourcing the piezo element &amp; amplifier, and making the transducer case and the impedance matching network. Crucially, I detailed the process of characterizing the generated pressure field of the transducer to tune the amplifier gain to attain the required pressure.
 </p>
 
 <hr>
@@ -130,7 +126,7 @@ Below is an overview of sourcing the piezo element &amp; amplifier, and making t
 <h2>Piezoelectric Element ($50)</h2>
 
 <p>
-I sourced <a href="https://www.alibaba.com/product-detail/PZT-8-HIFU-PIEZO-4MHz-19_1601049081339.html?spm=a2756.order-detail-ta-ta-b.0.0.7847f19cQCftoF" target="_blank" rel="noopener noreferrer">this piezo</a> from Alibaba. It is a PZT-4 ceramic with mechanical Q (Q<sub>m</sub>) of 600 and thickness of 4.1 mm, with a fundamental frequency of 500 kHz and diameter of 50 mm. The element is bowl-shaped (spherically focused) with a 30 mm focal length. Its maximum tolerable voltage was 400V, far higher than my requirements. The intended application of the element was in ultrasonic cleaning.
+I sourced <a href="https://www.alibaba.com/product-detail/PZT-8-HIFU-PIEZO-4MHz-19_1601049081339.html?spm=a2756.order-detail-ta-ta-b.0.0.7847f19cQCftoF" target="_blank" rel="noopener noreferrer">this piezo</a> from Alibaba. It is a PZT-4 ceramic with mechanical Q (Q<sub>m</sub>) of 600 and thickness of 4.1 mm, with a fundamental frequency of 500 kHz and diameter of 50 mm. The element is bowl-shaped (spherically focused) with a 30 mm focal length. Its maximum tolerable voltage is 400V, far higher than my requirements. The intended application of the element is in ultrasonic cleaning.
 </p>
 
 <img src="assets/image-00.png" alt="Piezoelectric element" class="img-medium">
@@ -141,7 +137,7 @@ I sourced <a href="https://www.alibaba.com/product-detail/PZT-8-HIFU-PIEZO-4MHz-
 <h2>Amplifier ($100)</h2>
 
 <p>
-Sourcing a low-frequency (500KHz), yet high-power radio amplifier was difficult. Widely produced amplifiers were either low-frequency and low-power, or high-power and high-frequency. Thankfully, I found <a href="https://www.alibaba.com/product-detail/100kHz-3MHz-50W-Medium-Long-Wave_60811229395.html" target="_blank" rel="noopener noreferrer">this amplifier</a> on Alibaba, so I bought this Class-B push-pull amplifier rated at 50W over 100KHz - 3MHz.
+Sourcing a low-frequency (500KHz), yet high-power radio amplifier is difficult. Widely produced amplifiers were either low-frequency and low-power, or high-power and high-frequency. Thankfully, I found <a href="https://www.alibaba.com/product-detail/100kHz-3MHz-50W-Medium-Long-Wave_60811229395.html" target="_blank" rel="noopener noreferrer">this amplifier</a> on Alibaba, so I bought this Class-B push-pull amplifier rated at 50W over 100KHz - 3MHz.
 </p>
 
 <img src="assets/image-01.png" alt="RF amplifier" class="img-small">
@@ -156,7 +152,7 @@ The critical constraint of the transducer casing is that it must be waterproof, 
 </p>
 
 <p>
-I designed the cylinder with tight tolerances and used press-fitting combined with UV-cure epoxy adhesive bonding to secure the piezo element on the front face of the transducer. The back features a screw-on cap with an O-ring seal (inspired by water bottle seals). A small hole was left in the back side cap to let in a wire to connect the back electrode, which was later sealed with epoxy to complete the waterproof enclosure. No matching layer was used; acoustic coupling to the skin is achieved via standard ultrasonic gel.
+I designed the cylinder with tight tolerances and used press-fitting combined with UV-cure epoxy adhesive bonding to secure the piezo element on the front face of the transducer. The back features a screw-on cap with an O-ring seal (inspired by water bottle seals). A small hole is left in the back side cap to let in a wire to connect the back electrode, which is later sealed with epoxy to complete the waterproof enclosure. No matching layer is used, and an acoustic coupling to the skin is achieved via standard ultrasonic gel.
 </p>
 
 <p>
@@ -175,7 +171,7 @@ A key component of the transducer is the impedance matching network. Given there
 </p>
 
 <img src="assets/image-03.png" alt="Impedance measurement setup" class="img-medium">
-<p class="caption">Figure 4: Measuring load impedance with pocketVNA. The crater of the piezoelectric element was filled with gel and clamped against my forehead to simulate load under real conditions.</p>
+<p class="caption">Figure 4: Measuring load impedance with pocketVNA. The crater of the piezoelectric element is filled with gel and clamped against my forehead to simulate load under real conditions.</p>
 
 <p>
 I made three impedance measurements of the load with a vector network analyzer, and the averaged results showed (10.8 − j5.3) Ω. Since my amplifier has an output impedance of 50Ω, power transfer efficiency without a matching network is only 58%.
@@ -206,7 +202,7 @@ I chose an L-matching network design for its simplicity. Solving for C and L, C 
 <h2>Transducer Characterization</h2>
 
 <p>
-For safety and efficacy testing, a hydrophone must be used to measure the real pressure field generated by the transducer. Unfortunately, a professional measurement tank with a 3-axis stage to make volumetric measurements costs on the order of $80K, sold by Onda Corporation.
+For safety and efficacy testing, a hydrophone must be used to measure the real pressure field generated by the transducer. Unfortunately, a professional measurement tank with a 3-axis stage to make volumetric measurements costs around $80K, sold by Onda Corporation.
 </p>
 
 <h3>Hydrophone ($2,250)</h3>
@@ -221,7 +217,7 @@ The Onda HNR-0500 hydrophone with a piezo element of 0.5mm in diameter at the ti
 <h3>DIY Measurement Tank ($200)</h3>
 
 <p>
-I opted to modify an Ender 3 printer to create my own measurement tank. The basic idea is to use the 3D printer as a 3-axis positioning stage, attach the hydrophone perpendicular to the print head, and write a program that sends G-code instructions to the printer while triggering the oscilloscope to capture pressure waveforms at each grid point. Water in the tank was degassed in a vacuum chamber for 30 minutes prior to measurement to eliminate bubble-induced scattering artifacts. Purchasing list and code available <a href="https://github.com/pythonlearner1025/Octopus" target="_blank" rel="noopener noreferrer">here</a>.
+I opted to modify an Ender 3 printer to create my own measurement tank. The basic idea is to use the 3D printer as a 3-axis positioning stage, attach the hydrophone perpendicular to the print head, and write a program that sends G-code instructions to the printer while triggering the oscilloscope to capture pressure waveforms at each grid point. Water in the tank was degassed in a vacuum chamber for 30 minutes prior to measurement to eliminate bubble-induced scattering artifacts. Equipment list and code available <a href="https://github.com/pythonlearner1025/Octopus" target="_blank" rel="noopener noreferrer">here</a>.
 </p>
 
 <p>
@@ -233,6 +229,33 @@ Using this setup, I measured a 5 cm × 5 cm × 5 cm volume at 1 mm voxel resolut
 
 <img src="assets/image-10.jpeg" alt="3D pressure visualization">
 <p class="caption">Figure 11: Measured pressure field at 1 mm voxel resolution, showing focal spot at 30 mm depth</p>
+
+<hr>
+<h3>Conclusion</h3>
+
+<p>
+You could make a budget ultrasound transducer for cheap (&lt;$300), but you won't be able to do neurostimulation without paying additional hidden costs.
+</p>
+
+<p>
+The first two hidden costs arise from the need to measure the transducer's pressure field. Hydrophone calibration service and the hydrophone dominates cost (in that order). With luck, you could source a used hydrophone for &lt;$1k on Ebay that comes calibrated.
+</p>
+
+<p>
+Possibly, you could measure pressure fields using just <a href="https://www.sciencedirect.com/science/article/pii/S0041624X25000514" target="_blank" rel="noopener noreferrer">camera + software</a>, bypassing hydrophone/calibration/measurement tank entirely. This would lower the entry cost of ultrasound neurostimulation significantly. Someone should consider making one!
+</p>
+
+<p>
+The final hidden cost is brain imaging cost. To do neurostimulation, you need to do "neuronavigation": positioning the transducer on the head to stimulate the target region. The best option for neuronavigation is to simultaneously stimulate and measure neural activity with fMRI. This requires a MRI machine.
+</p>
+
+<p>
+A worse option for neuronavigation is to treat simulation results as ground-truth. You would still need a high-resolution brain scan using MRI or CT. The latter is not recommended, it can literally cause <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10326490/" target="_blank" rel="noopener noreferrer">brain cancer</a>.
+</p>
+
+<p>
+So the transducer is cheap, but neuronavigation is not. Unfortunately, there is no such thing as "budget ultrasound neurostimulation".
+</p>
 
 <hr>
 
