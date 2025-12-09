@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Budget Ultrasound Transducer</title>
+<style>
+body {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 12pt;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+    background: #ffffff;
+    color: #000000;
+}
+h1 {
+    font-size: 18pt;
+    font-weight: bold;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #000;
+    padding-bottom: 5px;
+}
+h2 {
+    font-size: 14pt;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+h3 {
+    font-size: 12pt;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 8px;
+}
+p {
+    margin: 10px 0;
+    text-align: justify;
+}
+ul {
+    margin: 10px 0 10px 20px;
+    padding: 0;
+}
+li {
+    margin: 5px 0;
+}
+img {
+    display: block;
+    margin: 15px auto;
+    max-width: 500px;
+}
+.caption {
+    text-align: center;
+    font-style: italic;
+    font-size: 10pt;
+    color: #444;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+.img-small {
+    max-width: 350px;
+}
+.img-medium {
+    max-width: 450px;
+}
+hr {
+    border: none;
+    border-top: 1px solid #999;
+    margin: 30px 0;
+}
+a {
+    color: #0000cc;
+}
+</style>
+</head>
+<body>
+
+<h1>Budget Ultrasound Transducer</h1>
+
+<p>
+The project was motivated by recent results that <a href="https://pubmed.ncbi.nlm.nih.gov/38277210/">transcranial magnetic stimulation of the medial prefrontal cortex (mPFC)</a>, a key node in the default mode network, reduces sleep onset latency. 
+</p>
+
+<p>
+The goal was to self-experiment using a DIY focused ultrasound transducer to answer whether ultrasound stimulation can also reduce sleep onset latency. Although I did not end up self-experimenting, I'm hoping this document helps people who want to do ultrasound neurostimulation.
+</p>
+
+<p>
+This was my first dab at electrical & mechanical engineering, pls forgive the jank. 
+</p>
+
+<p>
+Western manufacturers sell prefabricated transducers that meet the requirements below, but they are produced in very low volume and are thus priced at $15K and above. So naturally, I set out to make my own.
+</p>
+
+<h2>Requirements</h2>
+<ul>
+<li>500 kHz fundamental frequency</li>
+<li>30 mm focal length (to reach mPFC through temple bone)</li>
+<li>36% duty cycle</li>
+<li>Mechanical Index = 0.95</li>
+<li>Peak negative pressure (PNP) = 0.67 MPa</li>
+<li>I<sub>SPTA</sub> = 5.4 W/cm² (derived: I<sub>SPPA</sub> = PNP²/2ρc ≈ 15 W/cm², × 0.36 duty cycle)</li>
+<li>Total stimulation duration 1s</li>
+</ul>
+
+<h2>Overview</h2>
+
+<p>The four key components of a transducer are:</p>
+<ul>
+<li>Piezoelectric element</li>
+<li>Amplifier</li>
+<li>Impedance matching network</li>
+<li>Transducer case</li>
+</ul>
+
+<p>The involved peripheral equipment are:</p>
+<ul>
+<li>Function generator (signal source)</li>
+<li>Hydrophone (a piezoelectric sensor to convert Pa to V)</li>
+<li>Oscilloscope</li>
+</ul>
+
+<p>
+Below is an overview of sourcing the piezo element &amp; amplifier, and making the transducer case and the impedance matching network. Finally but importantly, I detailed the process of characterizing the generated pressure field of the transducer to tune the amplifier gain to attain the required pressure.
+</p>
+
+<hr>
+
+<h2>Piezoelectric Element ($50)</h2>
+
+<p>
+I sourced <a href="https://www.alibaba.com/product-detail/PZT-8-HIFU-PIEZO-4MHz-19_1601049081339.html?spm=a2756.order-detail-ta-ta-b.0.0.7847f19cQCftoF" target="_blank" rel="noopener noreferrer">this piezo</a> from Alibaba. It is a PZT-4 ceramic with mechanical Q (Q<sub>m</sub>) of 600 and thickness of 4.1 mm, with a fundamental frequency of 500 kHz and diameter of 50 mm. The element is bowl-shaped (spherically focused) with a 30 mm focal length. Its maximum tolerable voltage was 400V, far higher than my requirements. The intended application of the element was in ultrasonic cleaning.
+</p>
+
+<img src="assets/image-00.png" alt="Piezoelectric element" class="img-medium">
+<p class="caption">Figure 1: 500KHz piezoelectric element (50mm diameter)</p>
+
+<hr>
+
+<h2>Amplifier ($100)</h2>
+
+<p>
+Sourcing a low-frequency (500KHz), yet high-power radio amplifier was difficult. Widely produced amplifiers were either low-frequency and low-power, or high-power and high-frequency. Thankfully, I found <a href="https://www.alibaba.com/product-detail/100kHz-3MHz-50W-Medium-Long-Wave_60811229395.html" target="_blank" rel="noopener noreferrer">this amplifier</a> on Alibaba, so I bought this Class-B push-pull amplifier rated at 50W over 100KHz - 3MHz.
+</p>
+
+<img src="assets/image-01.png" alt="RF amplifier" class="img-small">
+<p class="caption">Figure 2: 50W push-pull RF amplifier (100KHz - 3MHz)</p>
+
+<hr>
+
+<h2>Transducer Casing Design</h2>
+
+<p>
+The critical constraint of the transducer casing is that it must be waterproof, air-backed, and must tightly secure the piezoelectric device to minimize vibrations misaligned with the intended path of the acoustic beam. Air backing provides maximum acoustic impedance mismatch at the rear surface (~99.9% reflection), directing nearly all acoustic energy forward; this maximizes output pressure at the cost of increased ring-down time and reduced bandwidth: an acceptable tradeoff for my application which uses a fixed 500KHz. The enclosure must be waterproof because the piezo element has electrodes of opposite polarity on the front and back silver-painted surfaces, which must remain electrically isolated to convert electrical energy to mechanical energy.
+</p>
+
+<p>
+I designed the cylinder with tight tolerances and used press-fitting combined with UV-cure epoxy adhesive bonding to secure the piezo element on the front face of the transducer. The back features a screw-on cap with an O-ring seal (inspired by water bottle seals). A small hole was left in the back side cap to let in a wire to connect the back electrode, which was later sealed with epoxy to complete the waterproof enclosure. No matching layer was used; acoustic coupling to the skin is achieved via standard ultrasonic gel.
+</p>
+
+<p>
+The reactance of the completed assembled transducer at 500Khz was tested with a network analyzer to confirm secondary vibrations were not significant.
+</p>
+
+<img src="assets/image-02.png" alt="CAD exploded view">
+<p class="caption">Figure 3: Exploded view showing assembly</p>
+
+<hr>
+
+<h2>Impedance Matching Network ($20)</h2>
+
+<p>
+A key component of the transducer is the impedance matching network. Given there is already 75% power loss through the skull, and the scarcity of high low-frequency, high-power (50W+) amplifiers, efficient power transfer from amplifier to transducer is essential.
+</p>
+
+<img src="assets/image-03.png" alt="Impedance measurement setup" class="img-medium">
+<p class="caption">Figure 4: Measuring load impedance with pocketVNA. The crater of the piezoelectric element was filled with gel and clamped against my forehead to simulate load under real conditions.</p>
+
+<p>
+I made three impedance measurements of the load with a vector network analyzer, and the averaged results showed (10.8 − j5.3) Ω. Since my amplifier has an output impedance of 50Ω, power transfer efficiency without a matching network is only 58%.
+</p>
+
+<img src="assets/image-04.png" alt="L-matching network diagram" class="img-small" style="transform: rotate(-90deg);">
+<p class="caption">Figure 5: L-matching network schematic (F<sub>0</sub> = 0.5 MHz, Z<sub>s</sub> = 50 Ω, Z<sub>L</sub> = (10 − j5) Ω)</p>
+
+<p>
+I chose an L-matching network design for its simplicity. Solving for C and L, C = 12.13 nF and L = 8.23 μH. Given how load impedance can vary under real conditions, I placed a fixed 10 nF capacitor to ground and added a rotary switch to select from 6 additional shunt capacitors: 1 nF, 1.52 nF, 2.2 nF, 3.3 nF, 4.72 nF, and 6.22 nF. This allows fine-tuning the total shunt capacitance from 11 nF to 16.22 nF to compensate for impedance variations. The match was verified by measuring S<sub>11</sub> on the VNA, confirming return loss of −10 dB at 500 kHz (~90% power transfer).
+</p>
+
+<img src="assets/image-05.png" alt="PCB layout" class="img-medium">
+<p class="caption">Figure 6: Final manufactured PCB for impedance matching network</p>
+
+<hr>
+
+<h2>Full System Testing</h2>
+
+<img src="assets/image-06.png" alt="Full system test" class="img-medium">
+<p class="caption">Figure 7: Full system (oscilloscope + amplifier + L-network + transducer) testing in a water bath</p>
+
+<img src="assets/image-07.png" alt="Fully assembled transducer" class="img-medium">
+<p class="caption">Figure 8: Fully assembled transducer</p>
+
+<hr>
+
+<h2>Transducer Characterization</h2>
+
+<p>
+For safety and efficacy testing, a hydrophone must be used to measure the real pressure field generated by the transducer. Unfortunately, a professional measurement tank with a 3-axis stage to make volumetric measurements costs on the order of $80K, sold by Onda Corporation.
+</p>
+
+<h3>Hydrophone ($2,250)</h3>
+
+<p>
+The Onda HNR-0500 hydrophone with a piezo element of 0.5mm in diameter at the tip. The hydrophone was purchased off ebay for $800 and calibrated by Onda for $1.45k.
+</p>
+
+<img src="assets/image-08.jpg" alt="Onda hydrophone" class="img-small">
+<p class="caption">Figure 9: Onda HNR-0500 hydrophone</p>
+
+<h3>DIY Measurement Tank ($200)</h3>
+
+<p>
+I opted to modify an Ender 3 printer to create my own measurement tank. The basic idea is to use the 3D printer as a 3-axis positioning stage, attach the hydrophone perpendicular to the print head, and write a program that sends G-code instructions to the printer while triggering the oscilloscope to capture pressure waveforms at each grid point. Water in the tank was degassed in a vacuum chamber for 30 minutes prior to measurement to eliminate bubble-induced scattering artifacts. Purchasing list and code available <a href="https://github.com/pythonlearner1025/Octopus" target="_blank" rel="noopener noreferrer">here</a>.
+</p>
+
+<p>
+Using this setup, I measured a 5 cm × 5 cm × 5 cm volume at 1 mm voxel resolution. The Ender 3 has a positioning repeatability of ~100–200 μm, well within the 1 mm grid spacing and sufficient for characterizing safety parameters of the ~1.5 mm focal spot at 500 kHz. From the measured pressure field, I verified the 30 mm focal length specified by the manufacturer and computed the amplifier gain required to achieve the target mechanical index and peak negative pressure.
+</p>
+
+<img src="assets/image-09.png" alt="Measurement setup">
+<p class="caption">Figure 10: Complete characterization setup with modified Ender 3D printer as 3-axis positioning stage</p>
+
+<img src="assets/image-10.jpeg" alt="3D pressure visualization">
+<p class="caption">Figure 11: Measured pressure field at 1 mm voxel resolution, showing focal spot at 30 mm depth</p>
+
+<hr>
+
+<p style="font-size: 10pt; color: #666; margin-top: 40px;">
+Last updated: 2025-12-08
+</p>
+
+</body>
+</html>
